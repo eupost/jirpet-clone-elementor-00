@@ -1,0 +1,898 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jirpet - Clone para Elementor</title>
+    <style>
+        /* CSS BASE - DESIGN SYSTEM JIRPET */
+        :root {
+            --jirpet-orange: #FF5722;
+            --jirpet-orange-light: #FF7043;
+            --jirpet-dark: #2E3440;
+            --jirpet-gray: #64748B;
+            --jirpet-light-gray: #F1F5F9;
+            --jirpet-white: #FFFFFF;
+            --shadow-soft: 0 4px 6px -1px rgba(46, 52, 64, 0.1);
+            --shadow-medium: 0 10px 15px -3px rgba(46, 52, 64, 0.1);
+            --shadow-glow: 0 0 30px rgba(255, 87, 34, 0.3);
+            --border-radius: 12px;
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--jirpet-dark);
+            scroll-behavior: smooth;
+        }
+
+        /* UTILITY CLASSES */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .section {
+            padding: 80px 0;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--jirpet-orange), var(--jirpet-orange-light));
+            color: white;
+            padding: 16px 32px;
+            border: none;
+            border-radius: var(--border-radius);
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: var(--transition);
+            cursor: pointer;
+            box-shadow: var(--shadow-medium);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-glow);
+        }
+
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            color: white;
+            padding: 16px 32px;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            border-radius: var(--border-radius);
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: var(--transition);
+            cursor: pointer;
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-2px);
+        }
+
+        .card {
+            background: white;
+            border-radius: calc(var(--border-radius) * 1.5);
+            padding: 32px;
+            box-shadow: var(--shadow-medium);
+            transition: var(--transition);
+            border: 1px solid rgba(46, 52, 64, 0.05);
+        }
+
+        .card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-glow);
+        }
+
+        /* HEADER */
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(46, 52, 64, 0.1);
+        }
+
+        .header-nav {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 80px;
+        }
+
+        .logo {
+            font-size: 32px;
+            font-weight: 700;
+            color: var(--jirpet-orange);
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 32px;
+        }
+
+        .nav-menu a {
+            text-decoration: none;
+            color: var(--jirpet-dark);
+            font-weight: 500;
+            transition: var(--transition);
+        }
+
+        .nav-menu a:hover {
+            color: var(--jirpet-orange);
+        }
+
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        /* HERO SECTION */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800"><rect fill="%23f1f5f9" width="1200" height="800"/><circle fill="%23ff5722" cx="200" cy="200" r="100" opacity="0.1"/><circle fill="%23ff7043" cx="1000" cy="600" r="150" opacity="0.1"/></svg>');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            position: relative;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            z-index: 2;
+        }
+
+        .hero h1 {
+            font-size: clamp(48px, 8vw, 80px);
+            font-weight: 700;
+            margin-bottom: 24px;
+            line-height: 1.1;
+        }
+
+        .hero .highlight {
+            color: var(--jirpet-orange);
+        }
+
+        .hero p {
+            font-size: 24px;
+            margin-bottom: 40px;
+            opacity: 0.9;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        /* PRODUCT FEATURES */
+        .product-feature {
+            display: flex;
+            align-items: center;
+            gap: 80px;
+            margin-bottom: 120px;
+        }
+
+        .product-feature:nth-child(even) {
+            flex-direction: row-reverse;
+        }
+
+        .product-content {
+            flex: 1;
+        }
+
+        .product-content h2 {
+            font-size: clamp(36px, 5vw, 56px);
+            font-weight: 700;
+            margin-bottom: 16px;
+            color: var(--jirpet-dark);
+        }
+
+        .product-content p {
+            font-size: 20px;
+            color: var(--jirpet-gray);
+            margin-bottom: 32px;
+        }
+
+        .product-visual {
+            flex: 1;
+            position: relative;
+        }
+
+        .product-image {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+            border-radius: calc(var(--border-radius) * 1.5);
+        }
+
+        /* PRODUCT GRID */
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 40px;
+            margin-top: 60px;
+        }
+
+        .product-card {
+            text-align: center;
+        }
+
+        .product-card img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            border-radius: var(--border-radius);
+            margin-bottom: 24px;
+        }
+
+        .product-card h3 {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 8px;
+            color: var(--jirpet-dark);
+        }
+
+        .product-card p {
+            color: var(--jirpet-gray);
+            margin-bottom: 16px;
+        }
+
+        .price {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+
+        .price-current {
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--jirpet-orange);
+        }
+
+        .price-original {
+            font-size: 18px;
+            color: var(--jirpet-gray);
+            text-decoration: line-through;
+        }
+
+        /* STATS SECTION */
+        .stats-section {
+            background: linear-gradient(135deg, var(--jirpet-dark), #3C4043);
+            color: white;
+            text-align: center;
+        }
+
+        .stats-title {
+            font-size: clamp(36px, 5vw, 56px);
+            font-weight: 700;
+            margin-bottom: 60px;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 32px;
+            margin-top: 60px;
+        }
+
+        .stat-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: var(--border-radius);
+            padding: 32px 20px;
+            transition: var(--transition);
+        }
+
+        .stat-card:hover {
+            background: rgba(255, 255, 255, 0.1);
+            transform: translateY(-4px);
+        }
+
+        .stat-number {
+            font-size: 48px;
+            font-weight: 700;
+            color: var(--jirpet-orange);
+            margin-bottom: 8px;
+        }
+
+        .stat-label {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .stat-description {
+            font-size: 14px;
+            opacity: 0.8;
+        }
+
+        /* TESTIMONIALS */
+        .testimonials {
+            background: linear-gradient(135deg, var(--jirpet-light-gray), white);
+        }
+
+        .testimonial-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .testimonial-content {
+            position: relative;
+        }
+
+        .testimonial-quote {
+            font-size: 24px;
+            line-height: 1.5;
+            margin-bottom: 32px;
+            font-style: italic;
+            color: var(--jirpet-dark);
+        }
+
+        .testimonial-author {
+            font-weight: 600;
+            color: var(--jirpet-dark);
+        }
+
+        .testimonial-role {
+            color: var(--jirpet-gray);
+            font-size: 14px;
+        }
+
+        /* FOOTER */
+        .footer {
+            background: var(--jirpet-dark);
+            color: white;
+        }
+
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 60px;
+        }
+
+        .benefit-card {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: var(--border-radius);
+            padding: 32px;
+            text-align: center;
+        }
+
+        .benefit-icon {
+            width: 48px;
+            height: 48px;
+            margin: 0 auto 16px;
+            background: var(--jirpet-orange);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .newsletter {
+            text-align: center;
+            padding: 60px 0;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .newsletter-form {
+            display: flex;
+            max-width: 400px;
+            margin: 0 auto;
+            gap: 12px;
+        }
+
+        .newsletter-input {
+            flex: 1;
+            padding: 16px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: var(--border-radius);
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+        }
+
+        .newsletter-input::placeholder {
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        /* MODAL */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 10000;
+            opacity: 0;
+            visibility: hidden;
+            transition: var(--transition);
+        }
+
+        .modal-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .modal-content {
+            background: white;
+            border-radius: calc(var(--border-radius) * 2);
+            max-width: 800px;
+            width: 90%;
+            max-height: 90vh;
+            overflow: hidden;
+            position: relative;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            transform: scale(0.9);
+            transition: var(--transition);
+        }
+
+        .modal-overlay.active .modal-content {
+            transform: scale(1);
+        }
+
+        .modal-image {
+            background: linear-gradient(135deg, #FFE0B2, #FFCC80);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 40px;
+        }
+
+        .modal-form {
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 16px;
+            right: 16px;
+            background: none;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+            z-index: 10001;
+        }
+
+        .discount-title {
+            font-size: 64px;
+            font-weight: 700;
+            color: var(--jirpet-orange);
+            text-align: center;
+            margin: 16px 0;
+        }
+
+        .modal-input {
+            width: 100%;
+            padding: 16px;
+            border: 2px solid #ddd;
+            border-radius: var(--border-radius);
+            margin-bottom: 20px;
+            font-size: 16px;
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 768px) {
+            .nav-menu {
+                display: none;
+            }
+            
+            .hero h1 {
+                font-size: 48px;
+            }
+            
+            .hero-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .product-feature {
+                flex-direction: column !important;
+                gap: 40px;
+                text-align: center;
+            }
+            
+            .testimonial-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .modal-content {
+                grid-template-columns: 1fr;
+                margin: 20px;
+            }
+            
+            .modal-image {
+                display: none;
+            }
+        }
+
+        /* ANIMATIONS */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0px);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        .animate-fade-in {
+            animation: fadeInUp 1s ease-out forwards;
+        }
+
+        .animate-float {
+            animation: float 6s ease-in-out infinite;
+        }
+    </style>
+</head>
+<body>
+    <!-- HEADER -->
+    <header class="header">
+        <div class="container">
+            <nav class="header-nav">
+                <div class="logo">Jirpet</div>
+                <ul class="nav-menu">
+                    <li><a href="#shop">SHOP</a></li>
+                    <li><a href="#about">ABOUT US</a></li>
+                    <li><a href="#join">JOIN US</a></li>
+                    <li><a href="#contact">CONTACT US</a></li>
+                    <li><a href="#blog">BLOG</a></li>
+                </ul>
+                <div class="header-actions">
+                    <span>Login / $0.00</span>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- HERO SECTION -->
+    <section class="hero">
+        <div class="hero-content animate-fade-in">
+            <h1>Smart Drying. <span class="highlight">Real Results.</span></h1>
+            <p>Explore Infinite Possibilities in Pet Grooming</p>
+            <div class="hero-buttons">
+                <a href="#products" class="btn-primary">Explore Products →</a>
+                <button class="btn-secondary">▶ Watch Demo</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- PRODUCT FEATURES -->
+    <section class="section">
+        <div class="container">
+            <div class="product-feature">
+                <div class="product-content">
+                    <h2>Jirpet F1 Pet Dryer Cabin</h2>
+                    <p>Pioneer in Smart Pet Grooming</p>
+                    <a href="#" class="btn-primary">Read More →</a>
+                </div>
+                <div class="product-visual">
+                    <img src="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 400'><rect fill='%23f1f5f9' width='400' height='400'/><rect fill='%23ff5722' x='100' y='150' width='200' height='100' rx='10'/><text x='200' y='210' text-anchor='middle' fill='white' font-family='Arial' font-size='16'>F1 Dryer</text></svg>" alt="F1 Pet Dryer Cabin" class="product-image">
+                </div>
+            </div>
+
+            <div class="product-feature">
+                <div class="product-content">
+                    <h2>Twin Titan I</h2>
+                    <p>Proprietary Dual Motors System</p>
+                    <a href="#" class="btn-primary">Read More →</a>
+                </div>
+                <div class="product-visual">
+                    <img src="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 400'><rect fill='%23f1f5f9' width='400' height='400'/><rect fill='%23ff7043' x='80' y='150' width='240' height='100' rx='10'/><text x='200' y='210' text-anchor='middle' fill='white' font-family='Arial' font-size='16'>Twin Titan I</text></svg>" alt="Twin Titan I" class="product-image">
+                </div>
+            </div>
+
+            <div class="product-feature">
+                <div class="product-content">
+                    <h2>Jirpet Harmony I</h2>
+                    <p>Innovative Pet Drying Solution</p>
+                    <a href="#" class="btn-primary">Read More →</a>
+                </div>
+                <div class="product-visual">
+                    <img src="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 400'><rect fill='%23f1f5f9' width='400' height='400'/><rect fill='%23ff5722' x='120' y='150' width='160' height='100' rx='10'/><text x='200' y='210' text-anchor='middle' fill='white' font-family='Arial' font-size='14'>Harmony I</text></svg>" alt="Harmony I" class="product-image">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PRODUCTS GRID -->
+    <section class="section" id="products">
+        <div class="container">
+            <h2 style="text-align: center; font-size: 48px; font-weight: 700; margin-bottom: 60px; color: var(--jirpet-dark);">Our Products</h2>
+            
+            <div class="products-grid">
+                <div class="card product-card">
+                    <img src="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 350 250'><rect fill='%23f1f5f9' width='350' height='250'/><rect fill='%23ff5722' x='75' y='75' width='200' height='100' rx='10'/><text x='175' y='135' text-anchor='middle' fill='white' font-family='Arial' font-size='16'>F1 Dryer</text></svg>" alt="F1 Dryer Cabin">
+                    <h3>F1 Dryer Cabin</h3>
+                    <p>Fast Drying | Quiet Operation</p>
+                    <div class="price">
+                        <span class="price-current">$2,999</span>
+                        <span class="price-original">$3,499</span>
+                    </div>
+                    <button class="btn-primary">🛒 SHOP NOW</button>
+                </div>
+
+                <div class="card product-card">
+                    <img src="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 350 250'><rect fill='%23f1f5f9' width='350' height='250'/><rect fill='%23ff7043' x='50' y='75' width='250' height='100' rx='10'/><text x='175' y='135' text-anchor='middle' fill='white' font-family='Arial' font-size='16'>Twin Titan I</text></svg>" alt="Twin Titan I">
+                    <h3>Twin Titan I</h3>
+                    <p>Pet Force Dryer</p>
+                    <div class="price">
+                        <span class="price-current">$1,899</span>
+                        <span class="price-original">$2,199</span>
+                    </div>
+                    <button class="btn-primary">🛒 SHOP NOW</button>
+                </div>
+
+                <div class="card product-card">
+                    <img src="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 350 250'><rect fill='%23f1f5f9' width='350' height='250'/><rect fill='%23ff5722' x='100' y='75' width='150' height='100' rx='10'/><text x='175' y='135' text-anchor='middle' fill='white' font-family='Arial' font-size='14'>Harmony I</text></svg>" alt="Harmony I">
+                    <h3>Harmony I</h3>
+                    <p>Pet Neck Dryer</p>
+                    <div class="price">
+                        <span class="price-current">$899</span>
+                        <span class="price-original">$1,099</span>
+                    </div>
+                    <button class="btn-primary">🛒 SHOP NOW</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- STATS SECTION -->
+    <section class="section stats-section">
+        <div class="container">
+            <h2 class="stats-title">Global Sales No.1 in High-End<br><span style="color: var(--jirpet-orange);">Pet Grooming Equipment</span></h2>
+            
+            <div style="text-align: center; margin: 40px 0;">
+                <div style="width: 120px; height: 120px; background: rgba(255,255,255,0.1); border-radius: 50%; margin: 0 auto; display: flex; align-items: center; justify-content: center;">
+                    <span style="font-size: 48px;">🏆</span>
+                </div>
+            </div>
+
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-number">500+</div>
+                    <div class="stat-label">Cities</div>
+                    <div class="stat-description">Available in More Than 500 Cities Worldwide</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">60000+</div>
+                    <div class="stat-label">Pet Store & Breeder</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">52%</div>
+                    <div class="stat-label">R&D Employees</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">800000+</div>
+                    <div class="stat-label">Served Over 80,000 Adorable Pets</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">8 Years</div>
+                    <div class="stat-label">of Innovation</div>
+                    <div class="stat-description">8-Year Expertise in High-End Pet Grooming Solutions</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- TESTIMONIALS -->
+    <section class="section testimonials">
+        <div class="container">
+            <h2 style="text-align: center; font-size: 48px; font-weight: 700; margin-bottom: 20px; color: var(--jirpet-dark);">Professional Choice</h2>
+            <p style="text-align: center; font-size: 24px; color: var(--jirpet-gray); margin-bottom: 60px;">Groomer's Voice</p>
+            
+            <div class="testimonial-grid">
+                <div class="testimonial-content">
+                    <div class="card">
+                        <div class="testimonial-quote">
+                            "Jirpet Helps Me To Switch Between Being A Salon Groomer And A Participant, Handling Both With Effortless Fluidity."
+                        </div>
+                        <div class="testimonial-author">Manuel Martinez</div>
+                        <div class="testimonial-role">Professional Groomer</div>
+                    </div>
+                </div>
+                <div class="testimonial-visual">
+                    <div class="card" style="text-align: center;">
+                        <div style="width: 200px; height: 200px; background: linear-gradient(135deg, var(--jirpet-orange), var(--jirpet-orange-light)); border-radius: 50%; margin: 0 auto; display: flex; align-items: center; justify-content: center;">
+                            <span style="color: white; font-size: 32px; font-weight: 700;">Jirpet</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="section">
+            <div class="container">
+                <h2 style="text-align: center; font-size: 48px; font-weight: 700; margin-bottom: 60px; color: white;">Why Buy from Jirpet.com?</h2>
+                
+                <div class="benefits-grid">
+                    <div class="benefit-card">
+                        <div class="benefit-icon">🚚</div>
+                        <h3 style="margin-bottom: 16px;">Fast & Free Delivery</h3>
+                        <p>Get your all orders fast and free standard shipping. Please contact customer service for shipping details before purchasing.</p>
+                    </div>
+                    <div class="benefit-card">
+                        <div class="benefit-icon">🛡️</div>
+                        <h3 style="margin-bottom: 16px;">1-Year Warranty</h3>
+                        <p>Your peace of mind is guaranteed with our 1-year warranty service. Please contact customer service for warranty details before purchasing.</p>
+                    </div>
+                    <div class="benefit-card">
+                        <div class="benefit-icon">💳</div>
+                        <h3 style="margin-bottom: 16px;">Easy Financing</h3>
+                        <p>We accept various payment methods, including credit/debit cards, PayPal, and other online payment platforms.</p>
+                    </div>
+                    <div class="benefit-card">
+                        <div class="benefit-icon">🎧</div>
+                        <h3 style="margin-bottom: 16px;">7x24 Support Team</h3>
+                        <p>Get help in anytime via in-site message or info@jirpet.com, we will respond as soon as possible.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="newsletter">
+            <div class="container">
+                <h3 style="margin-bottom: 32px; font-size: 32px;">Subscribe for event news</h3>
+                <div class="newsletter-form">
+                    <input type="email" placeholder="Email Address*" class="newsletter-input">
+                    <button class="btn-primary">Subscribe</button>
+                </div>
+            </div>
+        </div>
+
+        <div style="border-top: 1px solid rgba(255,255,255,0.1); padding: 40px 0; text-align: center;">
+            <div class="container">
+                <p>&copy; 2024 Jirpet. All rights reserved. Pioneer in Smart Pet Grooming Equipment</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- DISCOUNT MODAL -->
+    <div id="discountModal" class="modal-overlay">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeModal()">&times;</button>
+            <div class="modal-image">
+                <div style="text-align: center;">
+                    <div style="width: 200px; height: 200px; background: white; border-radius: 50%; margin: 0 auto; display: flex; align-items: center; justify-content: center; box-shadow: 0 20px 40px rgba(0,0,0,0.1);">
+                        <span style="font-size: 80px;">🐱</span>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-form">
+                <div style="text-align: center; margin-bottom: 32px;">
+                    <p style="color: var(--jirpet-gray); margin-bottom: 8px;">Enter your email and earn</p>
+                    <div class="discount-title">10% OFF</div>
+                </div>
+                <form onsubmit="handleSubscribe(event)">
+                    <label style="display: block; margin-bottom: 8px; font-weight: 600; color: var(--jirpet-dark);">Your Email</label>
+                    <input type="email" placeholder="your email" class="modal-input" required>
+                    <button type="submit" class="btn-primary" style="width: 100%; justify-content: center;">SUBMIT</button>
+                </form>
+                <p style="font-size: 12px; color: var(--jirpet-gray); text-align: center; margin-top: 16px;">
+                    By subscribing, you agree to receive promotional emails. You can unsubscribe at any time.
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // MODAL FUNCTIONALITY
+        function showModal() {
+            document.getElementById('discountModal').classList.add('active');
+        }
+
+        function closeModal() {
+            document.getElementById('discountModal').classList.remove('active');
+        }
+
+        function handleSubscribe(event) {
+            event.preventDefault();
+            closeModal();
+            alert('Thank you! Your 10% discount code has been sent to your email.');
+        }
+
+        // Show modal after 3 seconds
+        setTimeout(showModal, 3000);
+
+        // SMOOTH SCROLLING
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // SCROLL ANIMATIONS
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate-fade-in');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.card, .product-feature, .stat-card').forEach(el => {
+            observer.observe(el);
+        });
+
+        // CLOSE MODAL ON OUTSIDE CLICK
+        document.getElementById('discountModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeModal();
+            }
+        });
+
+        // ESC KEY TO CLOSE MODAL
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                closeModal();
+            }
+        });
+    </script>
+</body>
+</html>
