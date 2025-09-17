@@ -59,7 +59,10 @@ const ProductGrid = () => {
                 <p className="text-jirpet-gray">{product.description}</p>
                 
                 
-                <Button className="w-full jirpet-btn-primary group">
+                <Button 
+                  className="w-full jirpet-btn-primary group"
+                  onClick={() => window.open('https://jirpetbrasil.com.br/wp/loja/', '_blank')}
+                >
                   <ShoppingCart className="mr-2 w-5 h-5" />
                   COMPRAR AGORA
                 </Button>
@@ -86,7 +89,10 @@ const ProductGrid = () => {
                   <p className="text-jirpet-gray text-sm">{product.description}</p>
                   
                   
-                  <Button className="jirpet-btn-primary">
+                  <Button 
+                    className="jirpet-btn-primary"
+                    onClick={() => window.open('https://jirpetbrasil.com.br/wp/loja/', '_blank')}
+                  >
                     <ShoppingCart className="w-4 h-4" />
                   </Button>
                 </div>
@@ -113,7 +119,10 @@ const ProductGrid = () => {
               
               {/* Button Overlay */}
               <div className="absolute inset-0 flex items-center justify-center">
-                <Button className="jirpet-btn-primary text-lg px-8 py-4 shadow-lg hover:scale-105 transition-transform">
+                <Button 
+                  className="jirpet-btn-primary text-lg px-8 py-4 shadow-lg hover:scale-105 transition-transform"
+                  onClick={() => window.open('https://jirpetbrasil.com.br/wp/loja/', '_blank')}
+                >
                   Saiba mais
                 </Button>
               </div>

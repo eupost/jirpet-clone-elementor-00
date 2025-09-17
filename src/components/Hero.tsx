@@ -51,14 +51,12 @@ const Hero = () => {
         </p>
 
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4 animate-fade-in-up">
-          <Button className="jirpet-btn-primary group">
+          <Button 
+            className="jirpet-btn-primary group"
+            onClick={() => window.open('https://jirpetbrasil.com.br/wp/loja/', '_blank')}
+          >
             Explorar Produtos
             <ArrowRight className="ml-2 w-5 h-5 transition-transform group-hover:translate-x-1" />
-          </Button>
-          
-          <Button className="jirpet-btn-secondary group">
-            <Play className="mr-2 w-5 h-5" />
-            Assistir Demo
           </Button>
         </div>
 
