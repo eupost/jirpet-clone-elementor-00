@@ -4,6 +4,7 @@ import { ShoppingCart } from "lucide-react";
 import f1Dryer from "@/assets/f1-dryer.jpg";
 import twinTitan from "@/assets/twin-titan.jpg";
 import harmonyDryer from "@/assets/harmony-dryer.jpg";
+import familyProducts from "@/assets/family-products.jpg";
 
 const ProductGrid = () => {
   const products = [
@@ -108,10 +109,21 @@ const ProductGrid = () => {
 
         {/* Family Section */}
         <div className="text-center py-16">
-          <div className="mb-8">
-            <h2 className="text-4xl lg:text-5xl font-bold text-jirpet-dark mb-4">
+          <div className="mb-12">
+            <h2 className="text-4xl lg:text-5xl font-bold text-jirpet-dark mb-8">
               Família Jirpet
             </h2>
+            
+            {/* Family Products Image */}
+            <div className="relative max-w-6xl mx-auto mb-8">
+              <img 
+                src={familyProducts}
+                alt="Família completa de produtos Jirpet"
+                className="w-full h-auto rounded-2xl shadow-2xl"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent rounded-2xl" />
+            </div>
+            
             <Button className="jirpet-btn-primary">
               Saiba mais
             </Button>
