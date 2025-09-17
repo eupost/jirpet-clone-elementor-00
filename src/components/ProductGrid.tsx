@@ -108,25 +108,28 @@ const ProductGrid = () => {
         </div>
 
         {/* Family Section */}
-        <div className="text-center py-16">
+        <div className="py-16">
           <div className="mb-12">
-            <h2 className="text-4xl lg:text-5xl font-bold text-jirpet-dark mb-8">
+            <h2 className="text-4xl lg:text-5xl font-bold text-jirpet-dark mb-8 text-center">
               Família Jirpet
             </h2>
             
-            {/* Family Products Image */}
-            <div className="relative max-w-6xl mx-auto mb-8">
+            {/* Family Products Image - Full Width */}
+            <div className="relative w-full">
               <img 
                 src={familyProducts}
                 alt="Família completa de produtos Jirpet"
-                className="w-full h-auto rounded-2xl shadow-2xl"
+                className="w-full h-[400px] lg:h-[600px] object-cover rounded-2xl shadow-2xl"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent rounded-2xl" />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent rounded-2xl" />
+              
+              {/* Button Overlay */}
+              <div className="absolute inset-0 flex items-center justify-center">
+                <Button className="jirpet-btn-primary text-lg px-8 py-4 shadow-lg hover:scale-105 transition-transform">
+                  Saiba mais
+                </Button>
+              </div>
             </div>
-            
-            <Button className="jirpet-btn-primary">
-              Saiba mais
-            </Button>
           </div>
         </div>
       </div>

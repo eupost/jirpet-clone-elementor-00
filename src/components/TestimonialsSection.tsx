@@ -2,6 +2,9 @@ import { useState } from "react";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { ChevronLeft, ChevronRight, Quote } from "lucide-react";
+import manuelImg from "@/assets/testimonial-manuel.png";
+import ashleyImg from "@/assets/testimonial-ashley.png";
+import johnathanImg from "@/assets/testimonial-johnathan.png";
 
 const TestimonialsSection = () => {
   const [activeTestimonial, setActiveTestimonial] = useState(0);
@@ -12,7 +15,7 @@ const TestimonialsSection = () => {
       name: "Manuel Martinez",
       role: "Tosador Profissional",
       quote: "A Jirpet Me Ajuda A Alternar Entre Ser Um Tosador de Salão E Um Participante, Lidando Com Ambos Com Fluidez Sem Esforço.",
-      image: "/images/testimonial-1.jpg", // Placeholder
+      image: manuelImg,
       isActive: true
     },
     {
@@ -20,7 +23,7 @@ const TestimonialsSection = () => {
       name: "Ashley Pacini",
       role: "Proprietária de Salão",
       quote: "Como Competidora Internacional de Exposições Caninas E Proprietária de Salão, Uso Secadores Jirpet Para Gatos, Coelhos, Cães Idosos Sensíveis ao Ruído.",
-      image: "/images/testimonial-2.jpg", // Placeholder
+      image: ashleyImg,
       isActive: false
     },
     {
@@ -28,7 +31,7 @@ const TestimonialsSection = () => {
       name: "Johnathan Pires",
       role: "Tosador de Competição",
       quote: "A Jirpet Consistentemente Entrega Inovação, Como Íons Negativos, Elevando Meus Resultados de Pet Grooming Ao Próximo Nível.",
-      image: "/images/testimonial-3.jpg", // Placeholder
+      image: johnathanImg,
       isActive: false
     }
   ];
@@ -109,13 +112,15 @@ const TestimonialsSection = () => {
               </div>
             </div>
 
-            {/* Product Image */}
+            {/* Testimonial Image */}
             <div className="relative">
               <Card className="jirpet-card overflow-hidden">
-                <div className="aspect-square bg-gradient-to-br from-jirpet-orange/10 to-jirpet-orange/5 flex items-center justify-center">
-                  <div className="w-48 h-48 bg-white rounded-full shadow-lg flex items-center justify-center">
-                    <span className="text-2xl font-bold text-jirpet-orange">Jirpet</span>
-                  </div>
+                <div className="aspect-square">
+                  <img 
+                    src={testimonials[activeTestimonial].image}
+                    alt={testimonials[activeTestimonial].name}
+                    className="w-full h-full object-cover"
+                  />
                 </div>
               </Card>
               
@@ -131,11 +136,13 @@ const TestimonialsSection = () => {
           {testimonials.map((testimonial, index) => (
             <Card key={testimonial.id} className="jirpet-card">
               <div className="space-y-6">
-                {/* Product Image */}
-                <div className="aspect-video bg-gradient-to-br from-jirpet-orange/10 to-jirpet-orange/5 rounded-lg flex items-center justify-center">
-                  <div className="w-24 h-24 bg-white rounded-full shadow-lg flex items-center justify-center">
-                    <span className="font-bold text-jirpet-orange">Jirpet</span>
-                  </div>
+                {/* Testimonial Image */}
+                <div className="aspect-video rounded-lg overflow-hidden">
+                  <img 
+                    src={testimonial.image}
+                    alt={testimonial.name}
+                    className="w-full h-full object-cover"
+                  />
                 </div>
                 
                 {/* Quote */}
