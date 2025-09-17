@@ -58,12 +58,6 @@ const ProductGrid = () => {
                 <h3 className="text-2xl font-bold text-jirpet-dark">{product.name}</h3>
                 <p className="text-jirpet-gray">{product.description}</p>
                 
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center space-x-2">
-                    <span className="text-2xl font-bold text-jirpet-orange">{product.price}</span>
-                    <span className="text-lg text-gray-400 line-through">{product.originalPrice}</span>
-                  </div>
-                </div>
                 
                 <Button className="w-full jirpet-btn-primary group">
                   <ShoppingCart className="mr-2 w-5 h-5" />
@@ -91,16 +85,10 @@ const ProductGrid = () => {
                   <h3 className="text-xl font-bold text-jirpet-dark">{product.name}</h3>
                   <p className="text-jirpet-gray text-sm">{product.description}</p>
                   
-                  <div className="flex items-center justify-between">
-                    <div className="flex items-center space-x-2">
-                      <span className="text-xl font-bold text-jirpet-orange">{product.price}</span>
-                      <span className="text-sm text-gray-400 line-through">{product.originalPrice}</span>
-                    </div>
-                    
-                    <Button className="jirpet-btn-primary">
-                      <ShoppingCart className="w-4 h-4" />
-                    </Button>
-                  </div>
+                  
+                  <Button className="jirpet-btn-primary">
+                    <ShoppingCart className="w-4 h-4" />
+                  </Button>
                 </div>
               </div>
             </Card>

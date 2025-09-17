@@ -11,7 +11,6 @@ import DiscountModal from "@/components/DiscountModal";
 const Index = () => {
   return (
     <div className="min-h-screen bg-background">
-      <Header />
       <Hero />
       <ProductFeatures />
       <ProductGrid />

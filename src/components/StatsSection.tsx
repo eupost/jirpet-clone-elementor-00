@@ -88,21 +88,6 @@ const StatsSection = () => {
           ))}
         </div>
 
-        {/* Testimonials Preview */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mt-16">
-          {[1, 2, 3, 4].map((item) => (
-            <Card key={item} className="bg-white/5 backdrop-blur-sm border-white/10 p-4 aspect-square flex items-center justify-center">
-              <div className="text-center">
-                <div className="w-16 h-16 bg-jirpet-orange/20 rounded-full mx-auto mb-4 flex items-center justify-center">
-                  <Users className="w-8 h-8 text-jirpet-orange" />
-                </div>
-                <p className="text-sm text-gray-300">
-                  Tosador Profissional
-                </p>
-              </div>
-            </Card>
-          ))}
-        </div>
       </div>
     </section>
   );
