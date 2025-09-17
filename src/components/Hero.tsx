@@ -7,21 +7,18 @@ const Hero = () => {
     <section className="relative h-screen flex items-center justify-center overflow-hidden">
       {/* Video Background */}
       <video 
-        className="absolute inset-0 w-full h-full object-cover"
+        className="absolute inset-0 w-full h-full object-cover z-0"
         autoPlay
         muted
         loop
         playsInline
         poster={heroBg}
+        preload="metadata"
       >
         <source src="/hero-video.mp4" type="video/mp4" />
-        {/* Fallback for browsers that don't support video */}
-        <div 
-          className="absolute inset-0 w-full h-full bg-cover bg-center bg-no-repeat"
-          style={{ backgroundImage: `url(${heroBg})` }}
-        />
+        Your browser does not support the video tag.
       </video>
-      <div className="jirpet-hero-overlay" />
+      <div className="absolute inset-0 bg-black/30 z-1" />
       
       {/* Floating Particles */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">

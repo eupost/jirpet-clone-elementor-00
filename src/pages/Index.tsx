@@ -6,7 +6,6 @@ import StatsSection from "@/components/StatsSection";
 import VideoSection from "@/components/VideoSection";
 import TestimonialsSection from "@/components/TestimonialsSection";
 import Footer from "@/components/Footer";
-import DiscountModal from "@/components/DiscountModal";
 
 const Index = () => {
   return (
@@ -18,7 +17,6 @@ const Index = () => {
       <VideoSection />
       <TestimonialsSection />
       <Footer />
-      <DiscountModal />
     </div>
   );
 };
