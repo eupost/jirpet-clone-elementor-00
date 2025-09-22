@@ -12,21 +12,24 @@ const ProductFeatures = () => {
       name: "Jirpet F1 Pet Dryer Cabin",
       subtitle: "Pioneiro em Pet Grooming Inteligente",
       image: f1Dryer,
-      video: "/videos/f1-demo.mp4" // Placeholder para vídeo
+      video: "/videos/f1-demo.mp4", // Placeholder para vídeo
+      url: "https://jirpetbrasil.com.br/wp/produto/twin-titan-i-high-speed-pet-force-dryer/"
     },
     {
       id: "twin-titan",
       name: "Twin Titan I",
       subtitle: "Sistema Proprietário de Motores Duplos", 
       image: twinTitan,
-      video: "/videos/twin-titan-demo.mp4" // Placeholder para vídeo
+      video: "/videos/twin-titan-demo.mp4", // Placeholder para vídeo
+      url: "https://jirpetbrasil.com.br/wp/produto/f1-pet-hair-dryer-cabin/"
     },
     {
       id: "harmony",
       name: "Jirpet Harmony I",
       subtitle: "Solução Inovadora de Secagem Pet",
       image: harmonyDryer,
-      video: "/videos/harmony-demo.mp4" // Placeholder para vídeo
+      video: "/videos/harmony-demo.mp4", // Placeholder para vídeo
+      url: "https://jirpetbrasil.com.br/wp/produto/harmony-i-pet-neck-dryer/"
     }
   ];
 
@@ -49,7 +52,10 @@ const ProductFeatures = () => {
                 {product.subtitle}
               </p>
               
-              <Button className="jirpet-btn-primary group">
+              <Button 
+                className="jirpet-btn-primary group"
+                onClick={() => window.open(product.url, '_blank')}
+              >
                 Saiba Mais
                 <ArrowRight className="ml-2 w-5 h-5 transition-transform group-hover:translate-x-1" />
               </Button>
