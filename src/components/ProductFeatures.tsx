@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
+import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 import { ArrowRight } from "lucide-react";
 import f1Dryer from "@/assets/f1-dryer.jpg";
 import twinTitan from "@/assets/twin-titan.jpg";
@@ -73,12 +74,28 @@ const ProductFeatures = () => {
                   
                   {/* Video Overlay */}
                   <div className="absolute inset-0 bg-black/40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                    <Button className="jirpet-btn-secondary">
-                      <svg className="w-6 h-6 mr-2" fill="currentColor" viewBox="0 0 20 20">
-                        <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clipRule="evenodd" />
-                      </svg>
-                      Assistir Vídeo
-                    </Button>
+                    <Dialog>
+                      <DialogTrigger asChild>
+                        <Button className="jirpet-btn-secondary">
+                          <svg className="w-6 h-6 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                            <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clipRule="evenodd" />
+                          </svg>
+                          Assistir Vídeo
+                        </Button>
+                      </DialogTrigger>
+                      <DialogContent className="max-w-4xl w-full p-0">
+                        <div className="aspect-video w-full">
+                          <video
+                            className="w-full h-full rounded-lg"
+                            controls
+                            autoPlay
+                            src={product.video}
+                          >
+                            Seu navegador não suporta vídeo.
+                          </video>
+                        </div>
+                      </DialogContent>
+                    </Dialog>
                   </div>
                 </div>
               </Card>
