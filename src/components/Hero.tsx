@@ -7,13 +7,12 @@ const Hero = () => {
     <section className="relative h-screen flex items-center justify-center overflow-hidden">
       {/* Video Background */}
       <video 
-        className="absolute inset-0 w-full h-full object-cover z-0"
+        className="absolute inset-0 w-full h-full object-cover z-0 opacity-100 transition-opacity duration-1000"
         autoPlay
         muted
         loop
         playsInline
-        poster={heroBg}
-        preload="metadata"
+        preload="auto"
       >
         <source src="/hero-video.mp4" type="video/mp4" />
         Your browser does not support the video tag.
